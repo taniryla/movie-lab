@@ -5,6 +5,7 @@ import LoginPage from "../LoginPage/LoginPage";
 import MoviesDetailPage from "../MovieDetailPage/MovieDetailPage";
 import MoviesListPage from "../MoviesListPage/MoviesListPage";
 import Navbar from "../../components/Navbar/Navbar";
+import { movies } from "../../data.js";
 
 import "../../styles.css";
 
@@ -15,15 +16,18 @@ export default function App() {
     <main className="App">
       {user ? (
         <>
-          <Navbar />
+          <Navbar user={user} />
           <Routes>
             <Route path="/actors" element={<ActorListPage />} />
-            <Route path="/movies/detail" element={<MoviesDetailPage />} />
-            <Route path="/movies" element={<MoviesListPage />} />
+            <Route
+              path="/movies/:movieName"
+              element={<MoviesDetailPage movies={movies} />}
+            />
+            <Route path="/" element={<MoviesListPage movies={movies} />} />
           </Routes>
         </>
       ) : (
-        <LoginPage user={user} setUser={setUser} />
+        <LoginPage setUser={setUser} />
       )}
     </main>
   );

@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 
-const LoginPage = ({ user, setUser }) => {
+export default function LoginPage({ setUser }) {
   const [newUser, setNewUser] = useState("");
 
   function handleSubmit(evt) {
@@ -10,14 +10,15 @@ const LoginPage = ({ user, setUser }) => {
   }
 
   function handleChange(evt) {
-    setUser(evt.target.value);
+    setNewUser(evt.target.value);
   }
 
   return (
     <Fragment>
+      <h1>Login Page</h1>
       <form onSubmit={handleSubmit}>
         <input
-          value={user}
+          value={newUser}
           onChange={handleChange}
           placeholder="add username"
         />
@@ -25,6 +26,4 @@ const LoginPage = ({ user, setUser }) => {
       </form>
     </Fragment>
   );
-};
-
-export default LoginPage;
+}
